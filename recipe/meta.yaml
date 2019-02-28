@@ -53,7 +53,9 @@ outputs:
       host:
         - astropy
         - {{ pin_subpackage('lalpulsar', exact=True) }}
-        - numpy
+        # numpy pin is proscribed by astropy for py37
+        - numpy  # [py!=37]
+        - numpy 1.11.3  # [py>=37]
         - python
         - python-lal >={{ lal_version }}
       run:
