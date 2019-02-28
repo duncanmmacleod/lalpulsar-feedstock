@@ -1,6 +1,6 @@
 {% set name = "lalpulsar" %}
-{% set version = "1.17.0" %}
-{% set sha256 = "548da87dad8272ca8fb5015da9b41ef6e1897976c4d44ce5593812aa4601e225" %}
+{% set version = "1.17.1" %}
+{% set sha256 = "e60fee8051d556ad789975df6a1516bd3dee4abb3fcf3552609f80fa011718cb" %}
 
 package:
   name: {{ name }}
@@ -12,7 +12,7 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 1001
+  number: 0
   skip: true  # [win]
 
 requirements:
