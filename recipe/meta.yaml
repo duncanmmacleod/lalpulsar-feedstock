@@ -51,6 +51,7 @@ outputs:
         - pkg-config
         - swig >={{ swig_version }}
       host:
+        - astropy
         - {{ pin_subpackage('lalpulsar', exact=True) }}
         - numpy
         - python
