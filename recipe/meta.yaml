@@ -15,7 +15,7 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 0
+  number: 1
   skip: true  # [win]
 
 requirements:
@@ -41,6 +41,9 @@ test:
 
 outputs:
   - name: lalpulsar
+    build:
+      run_exports:
+        - {{ pin_subpackage("lalpulsar", max_pin="x.x") }}
 
   - name: python-lalpulsar
     script: install-python.sh
