@@ -2,6 +2,10 @@
 
 set -e
 
+# only link libraries we actually use
+export GSL_LIBS="-L${PREFIX}/lib -lgsl"
+export CFITSIO_LIBS="-L${PREFIX}/lib -lcfitsio"
+
 ./configure \
 	--prefix="${PREFIX}" \
 	--enable-swig-iface \

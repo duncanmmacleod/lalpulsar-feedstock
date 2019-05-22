@@ -1,0 +1,12 @@
+diff --git a/lalpulsar.pc.in b/lalpulsar.pc.in
+index 0ac0f069a5..2cfa90b240 100644
+--- a/lalpulsar.pc.in
++++ b/lalpulsar.pc.in
+@@ -12,6 +12,6 @@ LALPULSAR_PYTHON_PATH=@pyexecdir@
+ Name: LALPulsar
+ Description: LAL Pulsar Library
+ Version: @VERSION@
+-Requires: gsl, lal >= @LAL_VERSION@
++Requires.private: gsl, lal >= @LAL_VERSION@
+ Libs: -L${libdir} -llalpulsar
+ Cflags: -I${includedir}

@@ -13,9 +13,11 @@ source:
   fn: {{ name }}-{{ version }}.tar.xz
   url: http://software.ligo.org/lscsoft/source/lalsuite/{{ name }}-{{ version }}.tar.xz
   sha256: {{ sha256 }}
+  patches:
+    - pkgconfig.patch
 
 build:
-  number: 1
+  number: 2
   skip: true  # [win]
 
 requirements:
@@ -29,6 +31,7 @@ requirements:
     - fftw
     - gsl
     - lal >={{ lal_version }}
+    - libblas=*=*netlib
   run:
     - cfitsio
     - fftw
@@ -55,7 +58,12 @@ outputs:
         - swig >={{ swig_version }}
       host:
         - astropy
+        - cfitsio
+        - fftw
+        - gsl
+        - lal >={{ lal_version }}
         - {{ pin_subpackage('lalpulsar', exact=True) }}
+        - libblas=*=*netlib
         # numpy pin is proscribed by astropy for py37
         - numpy  # [py!=37]
         - numpy 1.11.3  # [py>=37]
@@ -63,6 +71,10 @@ outputs:
         - python-lal >={{ lal_version }}
       run:
         - astropy
+        - cfitsio
+        - fftw
+        - gsl
+        - lal >={{ lal_version }}
         - {{ pin_subpackage('lalpulsar', exact=True) }}
         - {{ pin_compatible('numpy') }}
         - python
@@ -75,8 +87,8 @@ outputs:
         - lalpulsar.PulsarParametersWrapper
         - lalpulsar.simulateCW
     about:
-      home: https://wiki.ligo.org/Computing/DASWG/LALSuite
-      doc_url: https://docs.ligo.org/lscsoft/lalsuite/lalpulsar/
+      home: https://wiki.ligo.org/Computing/LALSuite
+      doc_url: https://lscsoft.docs.ligo.org/lalsuite/lalpulsar/
       dev_url: https://git.ligo.org/lscsoft/lalsuite/
       license: GPLv2+
       license_family: GPL
@@ -87,8 +99,8 @@ outputs:
         This package contains the python bindings.
 
 about:
-  home: https://wiki.ligo.org/Computing/DASWG/LALSuite
-  doc_url: https://docs.ligo.org/lscsoft/lalsuite/lalpulsar/
+  home: https://wiki.ligo.org/Computing/LALSuite
+  doc_url: https://lscsoft.docs.ligo.org/lalsuite/lalpulsar/
   dev_url: https://git.ligo.org/lscsoft/lalsuite/
   license: GPLv2+
   license_family: GPL

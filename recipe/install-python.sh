@@ -7,6 +7,10 @@
 set -e
 pushd ${SRC_DIR}
 
+# only link libraries we actually use
+export GSL_LIBS="-L${PREFIX}/lib -lgsl"
+export CFITSIO_LIBS="-L${PREFIX}/lib -lcfitsio"
+
 # configure only python bindings and pure-python extras
 ./configure \
 	--prefix=$PREFIX \
