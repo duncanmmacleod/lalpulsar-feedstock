@@ -1,6 +1,6 @@
 {% set name = "lalpulsar" %}
-{% set version = "1.17.1" %}
-{% set sha256 = "e60fee8051d556ad789975df6a1516bd3dee4abb3fcf3552609f80fa011718cb" %}
+{% set version = "1.18.0" %}
+{% set sha256 = "d72aeee6cf4dffb99f769583a53d9981813d7244523c120b8add25ea454f831f" %}
 
 {% set lal_version = "6.19.2" %}
 {% set swig_version = "3.0.7" %}
@@ -17,7 +17,7 @@ source:
     - pkgconfig.patch
 
 build:
-  number: 2
+  number: 0
   skip: true  # [win]
 
 requirements:
