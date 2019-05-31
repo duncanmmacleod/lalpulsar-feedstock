@@ -2,7 +2,7 @@
 {% set version = "1.18.0" %}
 {% set sha256 = "d72aeee6cf4dffb99f769583a53d9981813d7244523c120b8add25ea454f831f" %}
 
-{% set lal_version = "6.19.2" %}
+{% set lal_version = "6.20.0" %}
 {% set swig_version = "3.0.7" %}
 
 package:
@@ -13,8 +13,6 @@ source:
   fn: {{ name }}-{{ version }}.tar.xz
   url: http://software.ligo.org/lscsoft/source/lalsuite/{{ name }}-{{ version }}.tar.xz
   sha256: {{ sha256 }}
-  patches:
-    - pkgconfig.patch
 
 build:
   number: 0
@@ -58,8 +56,6 @@ outputs:
         - swig >={{ swig_version }}
       host:
         - astropy
-        - cfitsio
-        - fftw
         - gsl
         - lal >={{ lal_version }}
         - {{ pin_subpackage('lalpulsar', exact=True) }}
@@ -71,8 +67,6 @@ outputs:
         - python-lal >={{ lal_version }}
       run:
         - astropy
-        - cfitsio
-        - fftw
         - gsl
         - lal >={{ lal_version }}
         - {{ pin_subpackage('lalpulsar', exact=True) }}
