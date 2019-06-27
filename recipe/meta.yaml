@@ -15,7 +15,7 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 1
+  number: 2
   skip: true  # [win]
 
 requirements:
@@ -60,9 +60,7 @@ outputs:
         - lal >={{ lal_version }}
         - {{ pin_subpackage('lalpulsar', exact=True) }}
         - libblas=*=*netlib
-        # numpy pin is proscribed by astropy for py37
-        - numpy 1.9  # [py!=37]
-        - numpy 1.11.3  # [py>=37]
+        - numpy
         - python
         - python-lal >={{ lal_version }}
       run:
