@@ -28,8 +28,8 @@ requirements:
     - cfitsio
     - fftw
     - gsl
-    - lal >={{ lal_version }}
-    - libblas=*=*netlib
+    - lal >={{ lal_version }} fftw*
+    - libblas
   run:
     - cfitsio
     - fftw
