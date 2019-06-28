@@ -15,7 +15,7 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 2
+  number: 3
   skip: true  # [win]
 
 requirements:
@@ -28,8 +28,8 @@ requirements:
     - cfitsio
     - fftw
     - gsl
-    - lal >={{ lal_version }}
-    - libblas=*=*netlib
+    - lal >={{ lal_version }} fftw*
+    - libblas * *netlib
   run:
     - cfitsio
     - fftw
