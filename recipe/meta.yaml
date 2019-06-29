@@ -15,7 +15,7 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 3
+  number: 4
   skip: true  # [win]
 
 requirements:
@@ -26,7 +26,7 @@ requirements:
     - swig >={{ swig_version }}
   host:
     - cfitsio
-    - fftw
+    - fftw * nompi*  # [fft_impl == "fftw"]
     - gsl
     - lal >={{ lal_version }} fftw*
     - libblas * *netlib
