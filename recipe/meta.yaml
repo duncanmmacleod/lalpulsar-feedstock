@@ -15,8 +15,12 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 5
+  number: 6
   skip: true  # [win]
+  ignore_run_exports:
+    # run_exports parsing for fftw is broken, so we ignore it
+    # manually, for now
+    - fftw
 
 requirements:
   build:
