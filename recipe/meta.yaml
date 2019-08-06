@@ -1,6 +1,6 @@
 {% set name = "lalpulsar" %}
-{% set version = "1.18.0" %}
-{% set sha256 = "d72aeee6cf4dffb99f769583a53d9981813d7244523c120b8add25ea454f831f" %}
+{% set version = "1.18.1" %}
+{% set sha256 = "38fb0b2d3781eca3f2658ca00c252f85609cdc98229878c70ce32af61f691248" %}
 
 {% set lal_version = "6.20.0" %}
 {% set swig_version = "3.0.7" %}
@@ -15,7 +15,7 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 6
+  number: 0
   skip: true  # [win]
   ignore_run_exports:
     # run_exports parsing for fftw is broken, so we ignore it
