@@ -15,12 +15,13 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 0
-  skip: true  # [win]
+  error_overlinking: true
   ignore_run_exports:
     # run_exports parsing for fftw is broken, so we ignore it
     # manually, for now
     - fftw
+  number: 1
+  skip: true  # [win]
 
 requirements:
   build:
@@ -42,6 +43,7 @@ requirements:
 
 test:
   commands:
+    - test ${LALPULSAR_DATADIR} == "${PREFIX}/share/lalpulsar"  # [unix]
     - lalpulsar_version --verbose
 
 outputs:
