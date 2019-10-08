@@ -35,7 +35,7 @@ requirements:
     - fftw * nompi*
     - gsl
     - lal >={{ lal_version }} fftw*
-    - libblas * *netlib
+    - libblas
   run:
     - cfitsio
     - fftw
@@ -66,7 +66,6 @@ outputs:
         - gsl
         - lal >={{ lal_version }}
         - {{ pin_subpackage('lalpulsar', exact=True) }}
-        - libblas=*=*netlib
         - numpy
         - python
         - python-lal >={{ lal_version }}
