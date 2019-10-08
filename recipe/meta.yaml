@@ -15,6 +15,7 @@ source:
   sha256: {{ sha256 }}
 
 build:
+  error_overdepending: true
   error_overlinking: true
   ignore_run_exports:
     # run_exports parsing for fftw is broken, so we ignore it
