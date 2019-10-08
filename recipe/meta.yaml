@@ -35,7 +35,6 @@ requirements:
     - fftw * nompi*
     - gsl
     - lal >={{ lal_version }} fftw*
-    - libblas
   run:
     - cfitsio
     - fftw
