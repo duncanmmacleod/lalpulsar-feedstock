@@ -15,12 +15,14 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 0
-  skip: true  # [win]
+  error_overdepending: true
+  error_overlinking: true
   ignore_run_exports:
     # run_exports parsing for fftw is broken, so we ignore it
     # manually, for now
     - fftw
+  number: 1
+  skip: true  # [win]
 
 requirements:
   build:
@@ -33,7 +35,6 @@ requirements:
     - fftw * nompi*
     - gsl
     - lal >={{ lal_version }} fftw*
-    - libblas * *netlib
   run:
     - cfitsio
     - fftw
@@ -42,6 +43,7 @@ requirements:
 
 test:
   commands:
+    - test ${LALPULSAR_DATADIR} == "${PREFIX}/share/lalpulsar"  # [unix]
     - lalpulsar_version --verbose
 
 outputs:
@@ -63,12 +65,13 @@ outputs:
         - gsl
         - lal >={{ lal_version }}
         - {{ pin_subpackage('lalpulsar', exact=True) }}
-        - libblas=*=*netlib
         - numpy
         - python
         - python-lal >={{ lal_version }}
       run:
         - astropy
+        - cfitsio  # [linux]
+        - fftw  # [linux]
         - gsl
         - lal >={{ lal_version }}
         - {{ pin_subpackage('lalpulsar', exact=True) }}
