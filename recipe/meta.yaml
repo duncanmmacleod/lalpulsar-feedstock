@@ -1,18 +1,19 @@
 {% set name = "lalpulsar" %}
-{% set version = "1.18.1" %}
-{% set sha256 = "38fb0b2d3781eca3f2658ca00c252f85609cdc98229878c70ce32af61f691248" %}
+{% set version = "1.18.2" %}
+{% set sha256 = "d2730ec165065ad8414fc65945789447eaa05aa7b2092b3183a105130d3a2480" %}
 
-{% set lal_version = "6.20.0" %}
+{% set lal_version = "6.21.0" %}
 {% set swig_version = "3.0.7" %}
 
 package:
-  name: {{ name }}
-  version: {{ version }}
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
 
 source:
-  fn: {{ name }}-{{ version }}.tar.xz
-  url: http://software.ligo.org/lscsoft/source/lalsuite/{{ name }}-{{ version }}.tar.xz
-  sha256: {{ sha256 }}
+  url: "http://software.ligo.org/lscsoft/source/lalsuite/{{ name }}-{{ version }}.tar.xz"
+  sha256: "{{ sha256 }}"
+  patches:
+    - pytest-tests.patch
 
 build:
   error_overdepending: true
@@ -21,14 +22,14 @@ build:
     # run_exports parsing for fftw is broken, so we ignore it
     # manually, for now
     - fftw
-  number: 2
+  number: 0
   skip: true  # [win]
 
 requirements:
   build:
     - {{ compiler('c') }}
     - make
-    - pkg-config
+    - pkg-config >=0.18.0
     - swig >={{ swig_version }}
   host:
     - cfitsio
@@ -42,9 +43,12 @@ requirements:
     - lal >={{ lal_version }}
 
 test:
+  requires:
+    - pkg-config  # [unix]
   commands:
     - test ${LALPULSAR_DATADIR} == "${PREFIX}/share/lalpulsar"  # [unix]
     - lalpulsar_version --verbose
+    - test "$(pkg-config --modversion ${PKG_NAME})" == "${PKG_VERSION}"  # [unix]
 
 outputs:
   - name: lalpulsar
@@ -58,7 +62,7 @@ outputs:
       build:
         - {{ compiler('c') }}
         - make
-        - pkg-config
+        - pkg-config >=0.18.0
         - swig >={{ swig_version }}
       host:
         - astropy
@@ -85,26 +89,34 @@ outputs:
         - lalpulsar.NstarTools
         - lalpulsar.PulsarParametersWrapper
         - lalpulsar.simulateCW
+      requires:
+        - mock  # [py<33]
+        - pathlib  # [py<34]
+        - pytest >=4.0.0a0
+      source_files:
+        - test/python
+      commands:
+        - pushd test/python; LAL_TEST_PKGDATADIR="${LALPULSAR_DATADIR}" python -m pytest -v; popd
     about:
-      home: https://wiki.ligo.org/Computing/LALSuite
-      doc_url: https://lscsoft.docs.ligo.org/lalsuite/lalpulsar/
-      dev_url: https://git.ligo.org/lscsoft/lalsuite/
-      license: GPLv2+
-      license_family: GPL
-      license_file: COPYING
-      summary: LSC Algorithm Pulsar Library
+      home: "https://wiki.ligo.org/Computing/LALSuite"
+      doc_url: "https://lscsoft.docs.ligo.org/lalsuite/lalpulsar/"
+      dev_url: "https://git.ligo.org/lscsoft/lalsuite/"
+      license: "GPL-2.0-or-later"
+      license_family: "GPL"
+      license_file: "COPYING"
+      summary: "LSC Algorithm Pulsar Library"
       description: |
         The LSC Algorithm Pulsar Library for gravitational wave data analysis.
         This package contains the python bindings.
 
 about:
-  home: https://wiki.ligo.org/Computing/LALSuite
-  doc_url: https://lscsoft.docs.ligo.org/lalsuite/lalpulsar/
-  dev_url: https://git.ligo.org/lscsoft/lalsuite/
-  license: GPLv2+
-  license_family: GPL
-  license_file: COPYING
-  summary: LSC Algorithm Pulsar Library
+  home: "https://wiki.ligo.org/Computing/LALSuite"
+  doc_url: "https://lscsoft.docs.ligo.org/lalsuite/lalpulsar/"
+  dev_url: "https://git.ligo.org/lscsoft/lalsuite/"
+  license: "GPL-2.0-or-later"
+  license_family: "GPL"
+  license_file: "COPYING"
+  summary: "LSC Algorithm Pulsar Library"
   description: |
     The LSC Algorithm Pulsar Library for gravitational wave data analysis.
     This package contains the shared-object libraries needed to run
