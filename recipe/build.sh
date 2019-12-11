@@ -9,22 +9,23 @@ export CFITSIO_LIBS="-L${PREFIX}/lib -lcfitsio"
 # configure
 ./configure \
 	--prefix="${PREFIX}" \
-	--enable-swig-iface \
+	--disable-gcc-flags \
+	--disable-python \
 	--disable-swig-octave \
 	--disable-swig-python \
-	--disable-python \
-	--disable-gcc-flags \
+	--enable-cfitsio \
 	--enable-silent-rules \
-	--enable-cfitsio
+	--enable-swig-iface \
+;
 
 # build
 make -j ${CPU_COUNT}
 
-# check
+# test
 make -j ${CPU_COUNT} check
 
 # install
-make install
+make -j ${CPU_COUNT} install
 
 # -- create activate/deactivate scripts
 PKG_NAME_UPPER=$(echo ${PKG_NAME} | awk '{ print toupper($0) }')
