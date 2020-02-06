@@ -3,7 +3,7 @@ About lalpulsar
 
 Home: https://wiki.ligo.org/Computing/LALSuite
 
-Package license: GPLv2+
+Package license: GPL-2.0-or-later
 
 Feedstock license: BSD 3-Clause
 
