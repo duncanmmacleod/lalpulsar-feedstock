@@ -22,7 +22,7 @@ build:
     # run_exports parsing for fftw is broken, so we ignore it
     # manually, for now
     - fftw
-  number: 0
+  number: 1
   skip: true  # [win]
 
 requirements:
