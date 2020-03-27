@@ -3,7 +3,7 @@
 {% set sha256 = "d2730ec165065ad8414fc65945789447eaa05aa7b2092b3183a105130d3a2480" %}
 
 {% set lal_version = "6.21.0" %}
-{% set swig_version = "3.0.7" %}
+{% set swig_version = "3.0.9" %}
 
 package:
   name: "{{ name|lower }}"
@@ -22,7 +22,7 @@ build:
     # run_exports parsing for fftw is broken, so we ignore it
     # manually, for now
     - fftw
-  number: 1
+  number: 2
   skip: true  # [win]
 
 requirements:
