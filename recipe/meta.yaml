@@ -28,6 +28,8 @@ build:
 requirements:
   build:
     - {{ compiler('c') }}
+    - libgomp  # [linux]
+    - llvm-openmp  # [osx]
     - make
     - pkg-config >=0.18.0
     - swig >={{ swig_version }}
@@ -36,11 +38,14 @@ requirements:
     - fftw * nompi*
     - gsl
     - lal >={{ lal_version }} fftw*
+    - libgomp  # [linux]
+    - llvm-openmp  # [osx]
   run:
     - cfitsio
     - fftw
     - gsl
     - lal >={{ lal_version }}
+    - llvm-openmp  # [osx]
 
 test:
   requires:

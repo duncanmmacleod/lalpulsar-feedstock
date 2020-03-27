@@ -14,6 +14,7 @@ export CFITSIO_LIBS="-L${PREFIX}/lib -lcfitsio"
 	--disable-swig-octave \
 	--disable-swig-python \
 	--enable-cfitsio \
+	--enable-openmp \
 	--enable-silent-rules \
 	--enable-swig-iface \
 ;
