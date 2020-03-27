@@ -23,7 +23,7 @@ export CFITSIO_LIBS="-L${PREFIX}/lib -lcfitsio"
 make -j ${CPU_COUNT}
 
 # test
-make -j ${CPU_COUNT} check
+make -j ${CPU_COUNT} check || { cat test/test-suite.log; exit 1; }
 
 # install
 make -j ${CPU_COUNT} install
