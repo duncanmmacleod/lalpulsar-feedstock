@@ -58,6 +58,9 @@ outputs:
 
   - name: python-lalpulsar
     script: install-python.sh
+    build:
+      ignore_run_exports:
+        - python
     requirements:
       build:
         - {{ compiler('c') }}
